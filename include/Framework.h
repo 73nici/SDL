@@ -8,6 +8,9 @@
 
 #define g_framework Framework::Get()
 
+#define SCREEN_HEIGHT 400
+#define SCREEN_WIDTH 640
+
 class Framework : public TSingleton<Framework> {
 private:
     SDL_Renderer *renderer = nullptr;
