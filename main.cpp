@@ -3,9 +3,9 @@
 
 int main() {
     g_framework->init();
-    auto *game = new Game();
+    Game game;
 
-    game->loop();
+    game.loop();
 
     g_framework->cleanUp();
     return 0;

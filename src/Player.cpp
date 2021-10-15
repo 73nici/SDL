@@ -4,9 +4,23 @@ void Player::move() {
     const Uint8 *state = SDL_GetKeyboardState(nullptr);
 
     // move up
-    if (state[SDL_SCANCODE_W]) {
-        std::cout << "hi" << std::endl;
+    if (state[SDL_SCANCODE_W] || state[SDL_SCANCODE_UP]) {
         this->rect.y -= 1;
+    }
+
+    // move down
+    if (state[SDL_SCANCODE_S] || state[SDL_SCANCODE_DOWN]) {
+        this->rect.y += 1;
+    }
+
+    // move left
+    if (state[SDL_SCANCODE_A] || state[SDL_SCANCODE_LEFT]) {
+        this->rect.x -= 1;
+    }
+
+    // move right
+    if (state[SDL_SCANCODE_D] || state[SDL_SCANCODE_RIGHT]) {
+        this->rect.x += 1;
     }
 }
 
