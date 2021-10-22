@@ -8,11 +8,13 @@
 
 class Player {
 private:
-    SDL_Rect rect = {50, 50, 50, 50};
-
+    SDL_Rect rect = {0, 0, 50, 50};
+    SDL_Surface *surface = nullptr;
+    SDL_Texture *texture = nullptr;
 
     void move();
 public:
+    Player();
     void update();
 };
 

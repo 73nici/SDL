@@ -28,9 +28,25 @@ void Player::update() {
     this->move();
 
 
-    SDL_SetRenderDrawColor(g_framework->getRenderer(), 255, 255, 0, 255);
-    SDL_RenderFillRect(g_framework->getRenderer(), &this->rect);
+    // SDL_SetRenderDrawColor(g_framework->getRenderer(), 255, 255, 0, 255);
+    // SDL_RenderFillRect(g_framework->getRenderer(), &this->rect);
+    SDL_RenderCopy(g_framework->getRenderer(), this->texture, nullptr, &this->rect);
+}
 
+Player::Player() {
+    this->surface = SDL_LoadBMP("./sample.bmp");
+
+    if (this->surface == nullptr) {
+        std::cout << SDL_GetError() << std::endl;
+        exit(1);
+    }
+
+    this->texture = SDL_CreateTextureFromSurface(g_framework->getRenderer(), this->surface);
+
+    //this->rect.w = this->surface->w;
+    //this->rect.h = this->surface->h;
+
+    SDL_FreeSurface(this->surface);
 }
 
 
