@@ -1,5 +1,18 @@
 #include <Player.h>
 
+Player::Player() {
+    this->surface = SDL_LoadBMP("./sample.bmp");
+
+    if (this->surface == nullptr) {
+        std::cout << SDL_GetError() << std::endl;
+        exit(1);
+    }
+
+    this->texture = SDL_CreateTextureFromSurface(g_framework->getRenderer(), this->surface);
+
+    SDL_FreeSurface(this->surface);
+}
+
 void Player::move() {
     const Uint8 *state = SDL_GetKeyboardState(nullptr);
 
@@ -24,29 +37,38 @@ void Player::move() {
     }
 }
 
+void Player::shoot() {
+    const Uint8 *state = SDL_GetKeyboardState(nullptr);
+
+    if (state[SDL_SCANCODE_SPACE] && !this->isShooting) {
+        this->isShooting = true;
+        Shot shot = Shot(this->rect.x + (this->rect.w / 2), this->rect.y);
+        this->shots.push_back(shot);
+    }
+
+    if (!state[SDL_SCANCODE_SPACE]) {
+        this->isShooting = false;
+    }
+
+}
+
 void Player::update() {
     this->move();
-
-
-    // SDL_SetRenderDrawColor(g_framework->getRenderer(), 255, 255, 0, 255);
-    // SDL_RenderFillRect(g_framework->getRenderer(), &this->rect);
+    this->shoot();
+    this->processShooting();
     SDL_RenderCopy(g_framework->getRenderer(), this->texture, nullptr, &this->rect);
 }
 
-Player::Player() {
-    this->surface = SDL_LoadBMP("./sample.bmp");
-
-    if (this->surface == nullptr) {
-        std::cout << SDL_GetError() << std::endl;
-        exit(1);
+void Player::processShooting() {
+    std::list<Shot>::iterator it;
+    for (it = this->shots.begin(); it != this->shots.end(); it++) {
+        if (it->getPosY() >= 0) {
+            it->setPosY(it->getPosY() - 1);
+            it->update();
+        } else {
+            this->shots.erase(it--);
+        }
     }
-
-    this->texture = SDL_CreateTextureFromSurface(g_framework->getRenderer(), this->surface);
-
-    //this->rect.w = this->surface->w;
-    //this->rect.h = this->surface->h;
-
-    SDL_FreeSurface(this->surface);
 }
 
 

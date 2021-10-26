@@ -23,6 +23,7 @@ public:
     void cleanUp();
     void prepare();
     void render();
+    void drawLine(const int x0, const int y0, const int xe, const int ye);
 
     SDL_Renderer *getRenderer();
     SDL_Window *getWindow();
