@@ -29,7 +29,10 @@ int Game::loop() {
 
         // g_framework->drawLine(0, 0, 50, 50);
         g_framework->render();
-        std::cout << SDL_GetTicks() - startTick << std::endl;
+
+        if (DEBUG_MODE) {
+            std::cout << SDL_GetTicks() - startTick << std::endl;
+        }
     }
 
     return 0;

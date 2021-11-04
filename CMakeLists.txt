@@ -7,7 +7,7 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 
-add_executable(SDL_CPP main.cpp src/Framework.cpp include/Framework.h src/Game.cpp include/Game.h include/Singleton.h src/Player.cpp include/Player.h src/Shot.cpp include/Shot.h)
+add_executable(SDL_CPP main.cpp src/Framework.cpp include/Framework.h src/Game.cpp include/Game.h include/Singleton.h src/Player.cpp include/Player.h src/Shot.cpp include/Shot.h src/Util.cpp include/Util.h)
 
 target_include_directories(SDL_CPP PUBLIC include)
 

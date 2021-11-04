@@ -8,6 +8,7 @@
 #include <SDL2/SDL.h>
 
 #include "./Framework.h"
+#include "./Util.h"
 
 #define SHOT_WIDTH 20
 #define SHOT_HEIGHT 20
@@ -20,6 +21,8 @@ private:
 
 public:
     Shot(int posX, int posY);
+
+    ~Shot();
 
     int getPosX() {
         return this->rect.x;

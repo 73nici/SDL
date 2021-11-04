@@ -7,6 +7,8 @@
 #include "./Framework.h"
 #include "./Player.h"
 
+#define DEBUG_MODE true
+
 class Game {
 private:
     Player player;
