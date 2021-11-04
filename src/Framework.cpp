@@ -19,17 +19,22 @@ void Framework::render() {
 }
 
 void Framework::prepare() {
-    SDL_SetRenderDrawColor(this->renderer, 255, 0, 0, 255);
+    SDL_RenderClear(this->renderer);
+}
+
+
+void Framework::prepare(const Uint8 r, const Uint8 g, const Uint8 b, const Uint8 a) {
+    SDL_SetRenderDrawColor(this->renderer, r, g, b, a);
     SDL_RenderClear(this->renderer);
 }
 
 void Framework::init() {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-        std::cout << SDL_GetError() << std::endl;
+        Util::log(SDL_GetError());
         exit(1);
     }
 
-    this->window = SDL_CreateWindow("test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+    this->window = SDL_CreateWindow("SDL_CPP", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
     this->renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 

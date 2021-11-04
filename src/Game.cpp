@@ -1,4 +1,4 @@
-#include "Game.h"
+#include <Game.h>
 
 int Game::loop() {
     bool running = true;
@@ -22,17 +22,13 @@ int Game::loop() {
 
         }
 
-        SDL_SetRenderDrawColor(g_framework->getRenderer(), 0, 0, 0, 255);
-        SDL_RenderClear(g_framework->getRenderer());
+        g_framework->prepare(0, 0, 0, 255);
 
         player.update();
 
-        // g_framework->drawLine(0, 0, 50, 50);
         g_framework->render();
 
-        if (DEBUG_MODE) {
-            std::cout << SDL_GetTicks() - startTick << std::endl;
-        }
+        Util::log(SDL_GetTicks() - startTick);
     }
 
     return 0;

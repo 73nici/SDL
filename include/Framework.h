@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include <Singleton.h>
+#include <Util.h>
 
 #define g_framework Framework::Get()
 
@@ -21,9 +22,10 @@ public:
 
     void init();
     void cleanUp();
+    void prepare(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
     void prepare();
     void render();
-    void drawLine(const int x0, const int y0, const int xe, const int ye);
+    void drawLine(int x0, int y0, int xe, int ye);
 
     SDL_Renderer *getRenderer();
     SDL_Window *getWindow();

@@ -1,13 +1,13 @@
 #ifndef SDL_CPP_PLAYER_H
 #define SDL_CPP_PLAYER_H
 
-#include <SDL2/SDL.h>
 #include <iostream>
 #include <list>
+#include <SDL2/SDL.h>
 
-#include "./Framework.h"
-#include "./Shot.h"
-#include "./Util.h"
+#include <Framework.h>
+#include <Shot.h>
+#include <Util.h>
 
 class Player {
 private:

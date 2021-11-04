@@ -7,8 +7,8 @@
 
 #include <SDL2/SDL.h>
 
-#include "./Framework.h"
-#include "./Util.h"
+#include <Framework.h>
+#include <Util.h>
 
 #define SHOT_WIDTH 20
 #define SHOT_HEIGHT 20

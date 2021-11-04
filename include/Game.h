@@ -4,10 +4,10 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 
-#include "./Framework.h"
-#include "./Player.h"
+#include <Player.h>
+#include <Framework.h>
 
-#define DEBUG_MODE true
+// #define MY_DEBUG_MODE true
 
 class Game {
 private:

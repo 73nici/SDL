@@ -1,10 +1,10 @@
 #include <Player.h>
 
 Player::Player() {
-    this->surface = SDL_LoadBMP("../assets/sample.bmp");
+    this->surface = SDL_LoadBMP("./assets/sample.bmp");
 
     if (this->surface == nullptr) {
-        std::cout << SDL_GetError() << std::endl;
+        Util::log(SDL_GetError());
         exit(1);
     }
 
@@ -65,8 +65,6 @@ void Player::processShooting() {
         if (it->getPosY() >= 0) {
             it->setPosY(it->getPosY() - 1);
             it->update();
-
-            std::cout << "update" << std::endl;
         } else {
             this->shots.erase(it--);
         }
