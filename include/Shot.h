@@ -1,7 +1,3 @@
-//
-// Created by johncena on 10/26/21.
-//
-
 #ifndef SDL_CPP_SHOT_H
 #define SDL_CPP_SHOT_H
 
@@ -9,20 +5,20 @@
 
 #include <Framework.h>
 #include <Util.h>
+#include <Sprite.h>
 
 #define SHOT_WIDTH 20
 #define SHOT_HEIGHT 20
 
-class Shot {
-private:
-    SDL_Rect rect = {};
-    SDL_Surface *surface = nullptr;
-    SDL_Texture *texture = nullptr;
-
+class Shot : Sprite {
 public:
-    Shot(int posX, int posY);
-
-    ~Shot();
+    /**
+     * Constructor for Shot class
+     * @param posX position X for the shot
+     * @param posY position Y for the shot
+     * @param texture texture for the shot
+     */
+    Shot(int posX, int posY, SDL_Texture *texture) : Sprite(texture, posX - (SHOT_WIDTH / 2), posY, SHOT_HEIGHT, SHOT_HEIGHT) {};
 
     int getPosX() {
         return this->rect.x;
@@ -30,6 +26,14 @@ public:
 
     int getPosY() {
         return this->rect.y;
+    }
+
+    int getHeight() {
+        return this->rect.h;
+    }
+
+    int getWidth() {
+        return this->rect.w;
     }
 
     void setPosX(int posX) {
@@ -40,7 +44,9 @@ public:
         this->rect.y = posY;
     }
 
-    void update();
+    void update() {
+        SDL_RenderCopy(g_framework->getRenderer(), this->texture, nullptr, &this->rect);
+    }
 };
 
 

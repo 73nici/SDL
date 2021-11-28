@@ -1,18 +1,23 @@
 #include <Player.h>
 
-Player::Player() {
-    this->surface = SDL_LoadBMP("./assets/sample.bmp");
+/**
+ * Constructor of Player class
+ */
+Player::Player() : Sprite("../assets/sample.bmp", (SCREEN_WIDTH - 25) / 2, SCREEN_HEIGHT - 50, 50, 50) {
+    SDL_Surface *surfaceShoot = SDL_LoadBMP("../assets/shoot.bmp");
 
-    if (this->surface == nullptr) {
+    if (surfaceShoot == nullptr) {
         Util::log(SDL_GetError());
         exit(1);
     }
+    this->shootTexture = SDL_CreateTextureFromSurface(g_framework->getRenderer(), surfaceShoot);
 
-    this->texture = SDL_CreateTextureFromSurface(g_framework->getRenderer(), this->surface);
-
-    SDL_FreeSurface(this->surface);
+    SDL_FreeSurface(surfaceShoot);
 }
 
+/**
+ * checks the keyboard state and moves the player
+ */
 void Player::move() {
     const Uint8 *state = SDL_GetKeyboardState(nullptr);
 
@@ -37,12 +42,15 @@ void Player::move() {
     }
 }
 
+/**
+ * checks the keyboard state and shoots
+ */
 void Player::shoot() {
     const Uint8 *state = SDL_GetKeyboardState(nullptr);
 
     if (state[SDL_SCANCODE_SPACE] && !this->isShooting) {
         this->isShooting = true;
-        Shot shot = Shot(this->rect.x + (this->rect.w / 2), this->rect.y);
+        Shot shot = Shot(this->rect.x + (this->rect.w / 2), this->rect.y, this->shootTexture);
         this->shots.push_back(shot);
     }
 
@@ -52,6 +60,9 @@ void Player::shoot() {
 
 }
 
+/**
+ * update function for the player called on every render
+ */
 void Player::update() {
     this->move();
     this->shoot();
@@ -59,6 +70,9 @@ void Player::update() {
     SDL_RenderCopy(g_framework->getRenderer(), this->texture, nullptr, &this->rect);
 }
 
+/**
+ * checks if the shoots are still in range
+ */
 void Player::processShooting() {
     std::list<Shot>::iterator it;
     for (it = this->shots.begin(); it != this->shots.end(); it++) {
@@ -70,6 +84,3 @@ void Player::processShooting() {
         }
     }
 }
-
-
-

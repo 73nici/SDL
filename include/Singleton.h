@@ -1,6 +1,9 @@
 #ifndef SDL_CPP_SINGLETON_H
 #define SDL_CPP_SINGLETON_H
-
+/**
+ * Class to crate singletons
+ * @tparam T the class type
+ */
 template <class T>
 class TSingleton {
 

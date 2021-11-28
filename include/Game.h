@@ -3,15 +3,18 @@
 
 #include <SDL2/SDL.h>
 #include <iostream>
+#include <list>
 
 #include <Player.h>
+#include <Enemy.h>
 #include <Framework.h>
-
-// #define MY_DEBUG_MODE true
 
 class Game {
 private:
+    std::list<Enemy> enemies;
     Player player;
+
+    void updateEnemies(std::list<Shot> shots);
 
 public:
     int loop();

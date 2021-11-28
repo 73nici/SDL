@@ -8,12 +8,11 @@
 #include <Framework.h>
 #include <Shot.h>
 #include <Util.h>
+#include <Sprite.h>
 
-class Player {
+class Player : Sprite {
 private:
-    SDL_Rect rect = {(SCREEN_WIDTH - 25) / 2, SCREEN_HEIGHT - 50, 50, 50};
-    SDL_Surface *surface = nullptr;
-    SDL_Texture *texture = nullptr;
+    SDL_Texture *shootTexture = nullptr;
     std::list<Shot> shots = {};
     bool isShooting = false;
 
@@ -23,6 +22,10 @@ private:
 public:
     Player();
     void update();
+    std::list<Shot> getShots() {
+        return this->shots;
+    }
+
 };
 
 
