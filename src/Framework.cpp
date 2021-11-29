@@ -56,7 +56,7 @@ void Framework::prepare(const Uint8 r, const Uint8 g, const Uint8 b, const Uint8
  */
 void Framework::init() {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-        Util::log(SDL_GetError());
+        Util::logSDLError();
         exit(1);
     }
 

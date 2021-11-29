@@ -21,6 +21,10 @@ public:
     static void log(unsigned int num) {
         if (DEBUG_MODE) std::cout << num << std::endl;
     }
+
+    static void logSDLError() {
+        std::cout << SDL_GetError() << std::endl;
+    }
 };
 
 

@@ -3,11 +3,11 @@
 /**
  * Constructor of Player class
  */
-Player::Player() : Sprite("../assets/sample.bmp", (SCREEN_WIDTH - 25) / 2, SCREEN_HEIGHT - 50, 50, 50) {
-    SDL_Surface *surfaceShoot = SDL_LoadBMP("../assets/shoot.bmp");
+Player::Player() : Sprite("./assets/sample.bmp", (SCREEN_WIDTH - 25) / 2, SCREEN_HEIGHT - 50, 50, 50) {
+    SDL_Surface *surfaceShoot = SDL_LoadBMP("./assets/shoot.bmp");
 
     if (surfaceShoot == nullptr) {
-        Util::log(SDL_GetError());
+        Util::logSDLError();
         exit(1);
     }
     this->shootTexture = SDL_CreateTextureFromSurface(g_framework->getRenderer(), surfaceShoot);

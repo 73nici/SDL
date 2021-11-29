@@ -51,7 +51,7 @@ void Game::updateEnemies(std::list<Shot> shots) {
     std::list<Enemy>::iterator it;
 
     for (it = this->enemies.begin(); it != this->enemies.end(); it++) {
-        if (!it->processShots(shots)) {
+        if (!it->processShots(shots) || it->getPosY() >= SCREEN_HEIGHT) {
             this->enemies.erase(it--);
         } else {
             it->update();

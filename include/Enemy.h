@@ -1,7 +1,3 @@
-//
-// Created by johncena on 11/26/21.
-//
-
 #ifndef SDL_CPP_ENEMY_H
 #define SDL_CPP_ENEMY_H
 
@@ -12,11 +8,11 @@
 #include <Shot.h>
 
 
-class Enemy : Sprite {
+class Enemy : public Sprite {
 private:
     void move();
 public:
-    Enemy() : Sprite("../assets/sample.bmp", (SCREEN_WIDTH - 25) / 2, 50, 50, 50) {};
+    Enemy() : Sprite("./assets/sample.bmp", (SCREEN_WIDTH - 25) / 2, 50, 50, 50) {};
     void update();
     bool processShots(std::list<Shot> shots);
 };

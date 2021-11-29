@@ -15,8 +15,9 @@ void Enemy::move() {
 bool Enemy::processShots(std::list<Shot> shots) {
     std::list<Shot>::iterator it;
     for (it = shots.begin(); it != shots.end(); it++) {
-        if (it->getPosY() == this->getPosY()){
-            return false;
+        // check if shot hits the enemy Y-axis and X-axis
+        if ((this->getPosY() <= it->getPosY()) && (this->getPosY() + this->getHeight() >=  it->getPosY())  && (this->getPosX() <= it->getPosX()) && (this->getPosX() + this->getWidth() >= it->getPosX())){
+                return false;
         }
     }
     return true;

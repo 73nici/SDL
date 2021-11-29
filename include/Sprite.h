@@ -8,10 +8,10 @@
 #include <Util.h>
 
 class Sprite {
-protected:
+public:
     /**
-     * the texture for the sprite
-     */
+    * the texture for the sprite
+    */
     SDL_Texture *texture;
 
     /**
@@ -51,7 +51,6 @@ protected:
         return this->rect.y;
     }
 
-public:
     /**
      * Constructor for Sprite class
      * @param path to image file (BMP file)
@@ -65,7 +64,7 @@ public:
         surface = SDL_LoadBMP(path);
 
         if (surface == nullptr) {
-            Util::log(SDL_GetError());
+            Util::logSDLError();
             exit(1);
         }
 
@@ -85,7 +84,7 @@ public:
      */
     Sprite(SDL_Texture *texture, const int x, const int y, const int w, const int h) {
         if (texture == nullptr) {
-            Util::log(SDL_GetError());
+            Util::logSDLError();
             exit(1);
         }
 
